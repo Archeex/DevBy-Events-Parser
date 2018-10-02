@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <HBox alignment="CENTER" layoutX="-8.0" layoutY="-6.0" prefHeight="40.0" prefWidth="400.0">
+         <children>
+            <Label text="DevBy Новости" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" fillWidth="false" layoutY="50.0" prefHeight="400.0" prefWidth="400.0" spacing="5.0">
+         <children>
+            <Label fx:id="eventFirst" text="Label" />
+            <Label fx:id="eventDateFirst" text="Label">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <TextArea fx:id="eventFirstDescription" editable="false" prefHeight="100.0" prefWidth="350.0" />
+            <Label fx:id="eventSecond" text="Label" />
+            <Label fx:id="eventDateSecond" text="Label">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="eventSecondDescription" editable="false" prefHeight="100.0" prefWidth="350.0" />
+            <Label fx:id="eventThird" text="Label" />
+            <Label fx:id="eventDateThird" text="Label">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="eventThirdDescription" editable="false" prefHeight="100.0" prefWidth="350.0" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
+      </VBox>
+      <HBox alignment="CENTER" layoutY="450.0" prefHeight="50.0" prefWidth="400.0" spacing="50.0">
+         <children>
+            <Button fx:id="prevButton" mnemonicParsing="false" text="Prev" />
+            <Button fx:id="nextButton" mnemonicParsing="false" text="Next" />
+         </children>
+      </HBox>
+   </children>
+</Pane>
