@@ -86,6 +86,16 @@ public class Controller {
             }
         });
 
+        imageGit.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URL("https://github.com/Archeex/DevBy-Events-Parser/").toURI());
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         eventFirst.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (Desktop.isDesktopSupported()) {
                 try {
