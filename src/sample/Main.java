@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
-    private static Stage primaryStage; // **Declare static Stage**
+    private static Stage primaryStage;
 
     private void setPrimaryStage(Stage stage) {
         Main.primaryStage = stage;

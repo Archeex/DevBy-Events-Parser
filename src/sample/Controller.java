@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.w3c.dom.events.EventException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
