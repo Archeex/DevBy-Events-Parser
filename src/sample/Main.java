@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -16,6 +17,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 400, 500));
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("iconApp.png"));
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
     }
 
