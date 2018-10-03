@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -14,6 +15,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import static java.awt.Cursor.*;
 
 public class Controller {
 
@@ -110,6 +113,23 @@ public class Controller {
             Main.getPrimaryStage().setX(event.getScreenX() + xOffset);
             Main.getPrimaryStage().setY(event.getScreenY() + yOffset);
         });
+
+        eventName.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        eventName.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+
+        imageRoll.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        imageRoll.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+        imageExit.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        imageExit.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+        imageApp.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        imageApp.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+        imageGit.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        imageGit.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+
+        nextButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        nextButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+        prevButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        prevButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
 
         eventName.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (Desktop.isDesktopSupported()) {
