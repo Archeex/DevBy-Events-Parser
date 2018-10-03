@@ -1,6 +1,5 @@
+
 .idea
 out
 .gitattributes
 *.iml
-*.png
-src/META-INF
