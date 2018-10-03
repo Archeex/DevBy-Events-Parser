@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-image: url(&quot;background.png&quot;);" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-image: url(&quot;background.png&quot;);" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <HBox alignment="CENTER" layoutY="-6.0" prefHeight="40.0" prefWidth="400.0" spacing="5.0" style="-fx-background-image: url(&quot;background.png&quot;);">
          <children>
@@ -20,14 +20,26 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
             </Label>
             <Label text="Events" textFill="#1ac780">
                <font>
                   <Font name="Trebuchet MS Bold" size="18.0" />
                </font>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
             </Label>
-            <ImageView fx:id="imageGit" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="imageApp" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageGit" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin></ImageView>
+            <ImageView fx:id="imageApp" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin></ImageView>
          </children>
          <opaqueInsets>
             <Insets />
@@ -74,5 +86,7 @@
                </font></Button>
          </children>
       </HBox>
+      <ImageView fx:id="imageRoll" fitHeight="16.0" fitWidth="16.0" layoutX="364.0" layoutY="5.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageExit" fitHeight="16.0" fitWidth="16.0" layoutX="380.0" layoutY="5.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

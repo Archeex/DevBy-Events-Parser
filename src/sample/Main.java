@@ -10,8 +10,19 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
+    private static Stage primaryStage; // **Declare static Stage**
+
+    private void setPrimaryStage(Stage stage) {
+        Main.primaryStage = stage;
+    }
+
+    static public Stage getPrimaryStage() {
+        return Main.primaryStage;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+        setPrimaryStage(primaryStage);
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("DevBy Events");
         primaryStage.setScene(new Scene(root, 400, 500));

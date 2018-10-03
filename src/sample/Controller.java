@@ -1,11 +1,15 @@
 package sample;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import org.w3c.dom.events.EventException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
@@ -16,9 +20,15 @@ import java.net.URL;
 public class Controller {
 
     @FXML
+    private Pane pane;
+    @FXML
     private ImageView imageApp;
     @FXML
     private ImageView imageGit;
+    @FXML
+    private ImageView imageExit;
+    @FXML
+    private ImageView imageRoll;
 
     @FXML
     private Label eventName;
@@ -34,11 +44,15 @@ public class Controller {
 
     private Integer pageNumber;
     private EventParse news;
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
     @FXML
     private void initialize() throws ParserConfigurationException, IOException {
         imageApp.setImage(new Image("iconApp.png"));
         imageGit.setImage(new Image("iconGit.png"));
+        imageExit.setImage(new Image("iconExit.png"));
+        imageRoll.setImage(new Image("iconRoll.png"));
 
         //Parse XML in doc
         news = new EventParse(new URL("https://events.dev.by/"));
@@ -77,6 +91,26 @@ public class Controller {
                     e.printStackTrace();
                 }
             }
+        });
+
+        imageExit.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            Stage stage = (Stage) imageExit.getScene().getWindow();
+            stage.close();
+        });
+
+        imageRoll.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            Stage stage = (Stage) imageRoll.getScene().getWindow();
+            stage.setIconified(true);
+        });
+
+        pane.setOnMousePressed(event -> {
+            xOffset = Main.getPrimaryStage().getX() - event.getScreenX();
+            yOffset = Main.getPrimaryStage().getY() - event.getScreenY();
+        });
+
+        pane.setOnMouseDragged(event -> {
+            Main.getPrimaryStage().setX(event.getScreenX() + xOffset);
+            Main.getPrimaryStage().setY(event.getScreenY() + yOffset);
         });
 
         eventName.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
