@@ -1,5 +1,5 @@
 
-.idea/workspace.xml
-out/production/DevByEvents/iconApp1.png
-out/artifacts/DevByEvents_jar/DevByEvents.jar
-out/production/DevByEvents/iconApp1.png
+.idea
+out
+.gitattributes
+.iml

@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static java.awt.Cursor.*;
-
 public class Controller {
 
     @FXML
