@@ -1,4 +1,5 @@
-## <p align="center">itNotes Application ![](https://github.com/Archeex/itNotes/blob/master/documentation/diagrams/images/itNotesLogo.png)</p>
+## <p align="center">itNotes Application 
+  ![](https://github.com/Archeex/itNotes/blob/master/documentation/diagrams/images/itNotesLogo.png)</p>
 #### A desktop application, which parse news/posts from list of web-sites:
 • dev.by [(dev.by)](https://dev.by)
 
