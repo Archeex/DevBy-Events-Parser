@@ -16,7 +16,7 @@ public class Main extends Application {
         Main.primaryStage = stage;
     }
 
-    static public Stage getPrimaryStage() {
+    static Stage getPrimaryStage() {
         return Main.primaryStage;
     }
 

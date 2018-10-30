@@ -11,11 +11,19 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-image: url(&quot;background.png&quot;);" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
+      <Label fx:id="startText" alignment="CENTER" layoutX="37.0" layoutY="225.0" prefHeight="97.0" prefWidth="328.0" textAlignment="CENTER" textFill="#5b5b5b" wrapText="true">
+         <font>
+            <Font name="Trebuchet MS" size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
       <HBox alignment="CENTER" layoutY="-6.0" prefHeight="40.0" prefWidth="400.0" spacing="5.0" style="-fx-background-image: url(&quot;background.png&quot;);">
          <children>
-            <Label text="DevBy" textAlignment="RIGHT" textFill="#323232">
+            <Label text="itNotes" textAlignment="RIGHT" textFill="#ff5d00">
                <font>
-                  <Font name="Trebuchet MS" size="18.0" />
+                  <Font name="Trebuchet MS Bold" size="20.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -24,22 +32,22 @@
                   <Insets top="5.0" />
                </HBox.margin>
             </Label>
-            <Label text="Events" textFill="#1ac780">
+            <Button fx:id="habrButton" mnemonicParsing="false" prefHeight="10.0" style="-fx-background-color: #ff5d00;" text="habr.com" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Trebuchet MS Bold" size="18.0" />
+                  <Font size="10.0" />
                </font>
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
-            </Label>
-            <ImageView fx:id="imageGit" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+            </Button>
+            <Button fx:id="itprogerButton" mnemonicParsing="false" prefHeight="10.0" style="-fx-background-color: #ff5d00;" text="itproger.com" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
                <HBox.margin>
                   <Insets top="5.0" />
-               </HBox.margin></ImageView>
-            <ImageView fx:id="imageApp" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets top="5.0" />
-               </HBox.margin></ImageView>
+               </HBox.margin>
+            </Button>
          </children>
          <opaqueInsets>
             <Insets />
@@ -50,14 +58,14 @@
       </HBox>
       <VBox alignment="CENTER" fillWidth="false" layoutY="50.0" prefHeight="400.0" prefWidth="400.0">
          <children>
-            <Label fx:id="eventName" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="350.0" text="Label" textFill="#282828" wrapText="true">
+            <Label fx:id="eventName" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="350.0" textFill="#282828" wrapText="true">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Label>
-            <Label fx:id="eventDate" prefHeight="40.0" prefWidth="350.0" text="Label" textFill="#5b5b5b">
+            <Label fx:id="eventDate" prefHeight="40.0" prefWidth="350.0" textFill="#5b5b5b">
                <font>
                   <Font size="14.0" />
                </font>
@@ -76,11 +84,11 @@
       </VBox>
       <HBox alignment="CENTER" layoutY="450.0" prefHeight="50.0" prefWidth="400.0" spacing="10.0">
          <children>
-            <Button fx:id="prevButton" mnemonicParsing="false" style="-fx-background-color: #1ac780;" text="Prev" textFill="WHITE">
+            <Button fx:id="prevButton" mnemonicParsing="false" style="-fx-background-color: #ff5d00;" text="Prev" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button fx:id="nextButton" mnemonicParsing="false" style="-fx-background-color: #1ac780;" text="Next" textFill="WHITE">
+            <Button fx:id="nextButton" mnemonicParsing="false" style="-fx-background-color: #ff5d00;" text="Next" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Button>

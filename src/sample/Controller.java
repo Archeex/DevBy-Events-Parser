@@ -21,10 +21,6 @@ public class Controller {
     @FXML
     private Pane pane;
     @FXML
-    private ImageView imageApp;
-    @FXML
-    private ImageView imageGit;
-    @FXML
     private ImageView imageExit;
     @FXML
     private ImageView imageRoll;
@@ -40,56 +36,85 @@ public class Controller {
     private Button nextButton;
     @FXML
     private Button prevButton;
+    @FXML
+    private Button habrButton;
+    @FXML
+    private Button itprogerButton;
+    @FXML
+    private Label startText;
 
-    private Integer pageNumber;
-    private EventParse news;
+    private Integer pageNumber = 0;
+    private ArticleParse news;
+    static String currentSource;
     private static double xOffset = 0;
     private static double yOffset = 0;
 
+    private String productName = "itNotes";
+    static String tempPath;
+
     @FXML
     private void initialize() throws ParserConfigurationException, IOException {
-        imageApp.setImage(new Image("iconApp.png"));
-        imageGit.setImage(new Image("iconGit.png"));
+        tempPath = "C:\\Users\\" + System.getProperty("user.name") + "\\AppData\\Local\\Temp\\" + productName;
         imageExit.setImage(new Image("iconExit.png"));
         imageRoll.setImage(new Image("iconRoll.png"));
 
-        //Parse XML in doc
-        news = new EventParse(new URL("https://events.dev.by/"));
-        pageNumber = 0;
-        initEvents(news, pageNumber);
+        startText.setText("Выберите интересующий вас источник. Для работы приложения требуется интернет-соединение.");
+        setHandlers();
+        setMouseDraggedShow();
+
+    }
+
+    private void initializeEvents(ArticleParse news, Integer pageNumber) {
+        eventName.setText(news.articleArrayList.get(pageNumber).articleName);
+        eventDate.setText(news.articleArrayList.get(pageNumber).articleDate);
+        eventDescription.setText(news.articleArrayList.get(pageNumber).articleDescription);
+    }
+
+    private void setHandlers() {
+        eventName.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(news.articleArrayList.get(pageNumber).url.toURI());
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         nextButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if(news.eventArrayList.size() == pageNumber + 1)
+            if(news.articleArrayList.size() == pageNumber + 1)
                 return;
             pageNumber++;
-            initEvents(news, pageNumber);
+            initializeEvents(news, pageNumber);
         });
 
         prevButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if(pageNumber > 0) {
                 pageNumber--;
-                initEvents(news, pageNumber);
+                initializeEvents(news, pageNumber);
             }
         });
 
-        imageApp.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if (Desktop.isDesktopSupported()) {
-                try {
-                    Desktop.getDesktop().browse(new URL("https://events.dev.by/").toURI());
-                } catch (IOException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
+        habrButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            currentSource = "habr.com";
+            try {
+                news = new ArticleParse(new URL("https://" + currentSource));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            initializeEvents(news, pageNumber);
+            startText.setVisible(false);
         });
 
-        imageGit.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if (Desktop.isDesktopSupported()) {
-                try {
-                    Desktop.getDesktop().browse(new URL("https://github.com/Archeex/DevBy-Events-Parser/").toURI());
-                } catch (IOException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
+        itprogerButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            currentSource = "itproger.com";
+            try {
+                news = new ArticleParse(new URL("https://" + currentSource));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            initializeEvents(news, pageNumber);
+            startText.setVisible(false);
         });
 
         imageExit.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -101,6 +126,26 @@ public class Controller {
             Stage stage = (Stage) imageRoll.getScene().getWindow();
             stage.setIconified(true);
         });
+    }
+
+    private void setMouseDraggedShow() {
+        eventName.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        eventName.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+
+        imageRoll.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        imageRoll.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+        imageExit.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        imageExit.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+
+        nextButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        nextButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+        prevButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        prevButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+
+        habrButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        habrButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+        itprogerButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        itprogerButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
 
         pane.setOnMousePressed(event -> {
             xOffset = Main.getPrimaryStage().getX() - event.getScreenX();
@@ -111,38 +156,5 @@ public class Controller {
             Main.getPrimaryStage().setX(event.getScreenX() + xOffset);
             Main.getPrimaryStage().setY(event.getScreenY() + yOffset);
         });
-
-        eventName.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
-        eventName.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
-
-        imageRoll.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
-        imageRoll.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
-        imageExit.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
-        imageExit.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
-        imageApp.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
-        imageApp.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
-        imageGit.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
-        imageGit.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
-
-        nextButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
-        nextButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
-        prevButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
-        prevButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
-
-        eventName.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if (Desktop.isDesktopSupported()) {
-                try {
-                    Desktop.getDesktop().browse(news.eventArrayList.get(pageNumber).url.toURI());
-                } catch (IOException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    private void initEvents(EventParse news, Integer pageNumber) {
-        eventName.setText(news.eventArrayList.get(pageNumber).nameEvent);
-        eventDate.setText(news.eventArrayList.get(pageNumber).dateEvent);
-        eventDescription.setText(news.eventArrayList.get(pageNumber).descrEvent);
     }
 }
