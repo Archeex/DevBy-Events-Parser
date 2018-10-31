@@ -24,7 +24,7 @@
 ### 4. Диаграмма прецедентов<a name="4"></a>
 Диаграмма прецедентов представляет собой следующую диаграмму: 
 
-![Диаграмма прецедентов](https://github.com/Archeex/itNotes/blob/master/documentation/diagrams/images/DiagramUseCase.png)
+![Диаграмма прецедентов](https://github.com/Archeex/itNotes/blob/master/documentation/diagrams/images/UseCaseDiagram.png)
 
 ### 5. Диаграмма развертывания<a name="5"></a>
 Диаграмма развертывания представляет собой следующую диаграмму: 
