@@ -16,6 +16,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Objects;
 
 public class Controller {
 
@@ -98,6 +99,13 @@ public class Controller {
         });
 
         habrButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (Desktop.isDesktopSupported() && Objects.equals(currentSource, "habr.com")) {
+                try {
+                    Desktop.getDesktop().browse(new URL("https://" + currentSource).toURI());
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
             currentSource = "habr.com";
             try {
                 news = new ArticleParse(new URL("https://" + currentSource));
@@ -109,6 +117,13 @@ public class Controller {
         });
 
         itprogerButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (Desktop.isDesktopSupported() && Objects.equals(currentSource, "itproger.com")) {
+                try {
+                    Desktop.getDesktop().browse(new URL("https://" + currentSource).toURI());
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
             currentSource = "itproger.com";
             try {
                 news = new ArticleParse(new URL("https://" + currentSource));
@@ -122,6 +137,13 @@ public class Controller {
         });
 
         threeDnewsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (Desktop.isDesktopSupported() && Objects.equals(currentSource, "3dnews.ru")) {
+                try {
+                    Desktop.getDesktop().browse(new URL("https://" + currentSource).toURI());
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
             currentSource = "3dnews.ru";
             try {
                 news = new ArticleParse(new URL("https://" + currentSource));
