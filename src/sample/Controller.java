@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -41,6 +42,8 @@ public class Controller {
     @FXML
     private Button itprogerButton;
     @FXML
+    private Button threeDnewsButton;
+    @FXML
     private Label startText;
 
     private Integer pageNumber = 0;
@@ -61,7 +64,6 @@ public class Controller {
         startText.setText("Выберите интересующий вас источник. Для работы приложения требуется интернет-соединение.");
         setHandlers();
         setMouseDraggedShow();
-
     }
 
     private void initializeEvents(ArticleParse news, Integer pageNumber) {
@@ -113,6 +115,21 @@ public class Controller {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            if(pageNumber > 5)
+                pageNumber = 5;
+            initializeEvents(news, pageNumber);
+            startText.setVisible(false);
+        });
+
+        threeDnewsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            currentSource = "3dnews.ru";
+            try {
+                news = new ArticleParse(new URL("https://" + currentSource));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(pageNumber > 19)
+                pageNumber = 19;
             initializeEvents(news, pageNumber);
             startText.setVisible(false);
         });
@@ -129,8 +146,14 @@ public class Controller {
     }
 
     private void setMouseDraggedShow() {
-        eventName.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
-        eventName.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+        eventName.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+            Main.getPrimaryStage().getScene().setCursor(Cursor.HAND);
+            eventName.setTextFill(Color.web("#994058"));
+            });
+        eventName.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
+            Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
+            eventName.setTextFill(Color.web("#282828"));
+        });
 
         imageRoll.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
         imageRoll.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
@@ -146,6 +169,9 @@ public class Controller {
         habrButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
         itprogerButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
         itprogerButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+        threeDnewsButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.HAND));
+        threeDnewsButton.addEventHandler(MouseEvent.MOUSE_EXITED, event -> Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT));
+
 
         pane.setOnMousePressed(event -> {
             xOffset = Main.getPrimaryStage().getX() - event.getScreenX();

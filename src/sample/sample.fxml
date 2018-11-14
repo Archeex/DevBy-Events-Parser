@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-image: url(&quot;background.png&quot;);" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane fx:id="pane" maxHeight="500.0" maxWidth="400.0" minHeight="500.0" minWidth="400.0" pickOnBounds="false" prefHeight="500.0" prefWidth="400.0" style="-fx-background-image: url(&quot;background.png&quot;);" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Label fx:id="startText" alignment="CENTER" layoutX="37.0" layoutY="225.0" prefHeight="97.0" prefWidth="328.0" textAlignment="CENTER" textFill="#5b5b5b" wrapText="true">
          <font>
@@ -19,9 +19,9 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <HBox alignment="CENTER" layoutY="-6.0" prefHeight="40.0" prefWidth="400.0" spacing="5.0" style="-fx-background-image: url(&quot;background.png&quot;);">
+      <HBox alignment="CENTER" layoutY="8.0" prefHeight="25.0" prefWidth="400.0" spacing="5.0">
          <children>
-            <Label text="itNotes" textAlignment="RIGHT" textFill="#ff5d00">
+            <Label text="itNotes" textAlignment="RIGHT" textFill="#994058">
                <font>
                   <Font name="Trebuchet MS Bold" size="20.0" />
                </font>
@@ -29,52 +29,62 @@
                   <Insets />
                </opaqueInsets>
                <HBox.margin>
-                  <Insets top="5.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
-            <Button fx:id="habrButton" mnemonicParsing="false" prefHeight="10.0" style="-fx-background-color: #ff5d00;" text="habr.com" textAlignment="CENTER" textFill="WHITE">
+            <Label opacity="0.77" text="Application" textFill="#323232">
                <font>
-                  <Font size="10.0" />
+                  <Font name="Trebuchet MS" size="20.0" />
+               </font>
+            </Label>
+         </children></HBox>
+      <HBox alignment="CENTER" layoutY="40.0" prefHeight="10.0" prefWidth="400.0" spacing="5.0">
+         <children>
+            <Button fx:id="habrButton" mnemonicParsing="false" prefHeight="10.0" style="-fx-background-color: #994058;" text="habr.com" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="10.0" />
                </font>
                <HBox.margin>
-                  <Insets top="5.0" />
+                  <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="itprogerButton" mnemonicParsing="false" prefHeight="10.0" style="-fx-background-color: #ff5d00;" text="itproger.com" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font size="10.0" />
-               </font>
+            <Button fx:id="itprogerButton" mnemonicParsing="false" prefHeight="10.0" style="-fx-background-color: #994058;" text="itproger.com" textAlignment="CENTER" textFill="WHITE">
                <HBox.margin>
-                  <Insets top="5.0" />
+                  <Insets />
                </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="threeDnewsButton" mnemonicParsing="false" style="-fx-background-color: #994058;" text="3dnews.ru" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
             </Button>
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
-         <padding>
-            <Insets top="15.0" />
-         </padding>
       </HBox>
-      <VBox alignment="CENTER" fillWidth="false" layoutY="50.0" prefHeight="400.0" prefWidth="400.0">
+      <VBox alignment="CENTER" fillWidth="false" layoutY="74.0" prefHeight="376.0" prefWidth="400.0">
          <children>
-            <Label fx:id="eventName" alignment="TOP_LEFT" prefHeight="100.0" prefWidth="350.0" textFill="#282828" wrapText="true">
+            <Label fx:id="eventName" prefHeight="105.0" prefWidth="350.0" textFill="#282828" wrapText="true">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin></Label>
-            <Label fx:id="eventDate" prefHeight="40.0" prefWidth="350.0" textFill="#5b5b5b">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
                   <Insets />
                </VBox.margin></Label>
+            <Label fx:id="eventDate" prefHeight="40.0" prefWidth="350.0" textFill="#5b5b5b">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <Label fx:id="eventDescription" alignment="TOP_LEFT" prefHeight="370.0" prefWidth="350.0" wrapText="true">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
                <opaqueInsets>
                   <Insets />
@@ -84,17 +94,17 @@
       </VBox>
       <HBox alignment="CENTER" layoutY="450.0" prefHeight="50.0" prefWidth="400.0" spacing="10.0">
          <children>
-            <Button fx:id="prevButton" mnemonicParsing="false" style="-fx-background-color: #ff5d00;" text="Prev" textFill="WHITE">
+            <Button fx:id="prevButton" mnemonicParsing="false" style="-fx-background-color: #994058;" text="Prev" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button fx:id="nextButton" mnemonicParsing="false" style="-fx-background-color: #ff5d00;" text="Next" textFill="WHITE">
+            <Button fx:id="nextButton" mnemonicParsing="false" style="-fx-background-color: #994058;" text="Next" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Button>
          </children>
       </HBox>
-      <ImageView fx:id="imageRoll" fitHeight="16.0" fitWidth="16.0" layoutX="364.0" layoutY="5.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imageExit" fitHeight="16.0" fitWidth="16.0" layoutX="380.0" layoutY="5.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageRoll" fitHeight="16.0" fitWidth="16.0" layoutX="359.0" layoutY="10.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageExit" fitHeight="16.0" fitWidth="16.0" layoutX="375.0" layoutY="10.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

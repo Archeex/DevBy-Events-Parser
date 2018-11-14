@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 class ArticleParse {
 
@@ -21,6 +22,7 @@ class ArticleParse {
         Elements allItems;
         File saveDataItProger = new File(Controller.tempPath + "\\saveDataItProger");
         File saveDataHabr = new File(Controller.tempPath + "\\saveDataHabr");
+        File saveData3Dnews = new File(Controller.tempPath + "\\saveData3Dnews");
 
         if (Controller.currentSource.equals("itproger.com")) {
             if (parseSuccessful) {
@@ -44,7 +46,7 @@ class ArticleParse {
             }
         }
 
-        else {
+        else if (Controller.currentSource.equals("habr.com")) {
             if (parseSuccessful) {
                 File folder = new File(Controller.tempPath);
                 if (!folder.exists())
@@ -56,7 +58,6 @@ class ArticleParse {
                 Document parseLocalDoc = Jsoup.parse(saveDataHabr, "UTF-8");
                 allItems = parseLocalDoc.select("article[class=post post_preview]");
             }
-            int i = 1;
             for (Element elem : allItems) {
                 Article someArticle = new Article();
                 someArticle.url = new URL(elem.select("h2[class=post__title]").select("a").attr("href"));
@@ -64,8 +65,28 @@ class ArticleParse {
                 someArticle.articleDescription = elem.select("div[class=post__text post__text-html js-mediator-article]").text();
                 someArticle.articleDate = elem.select("span[class=post__time]").text();
                 articleArrayList.add(someArticle);
-                if(i++ == 6)
-                    break;
+            }
+        }
+
+        else if (Controller.currentSource.equals("3dnews.ru")) {
+            if (parseSuccessful) {
+                File folder = new File(Controller.tempPath);
+                if (!folder.exists())
+                    folder.mkdir();
+
+                FileUtils.writeStringToFile(saveData3Dnews, parseDoc.outerHtml(), "UTF-8");
+                allItems = parseDoc.select("div[class=content-block margin-bottom white]").select("div[class=content-block-data white]");
+            } else {
+                Document parseLocalDoc = Jsoup.parse(saveData3Dnews, "UTF-8");
+                allItems = parseLocalDoc.select("div[class=content-block margin-bottom white]").select("div[class=content-block-data white]");
+            }
+            for (Element elem : allItems) {
+                Article someArticle = new Article();
+                someArticle.url = new URL("https://" + Controller.currentSource + "/" + elem.select("a").attr("href"));
+                someArticle.articleName = elem.select("a").attr("title");
+                someArticle.articleDescription = elem.select("div[class=teaser]").text();
+                someArticle.articleDate = elem.select("div[class=header]").select("span[class=date]").text();
+                articleArrayList.add(someArticle);
             }
         }
     }

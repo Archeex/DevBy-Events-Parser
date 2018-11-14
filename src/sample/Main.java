@@ -24,7 +24,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         setPrimaryStage(primaryStage);
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("DevBy Events");
+        primaryStage.setTitle("itNotes Application v2.1");
         primaryStage.setScene(new Scene(root, 400, 500));
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("iconApp.png"));
