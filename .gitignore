@@ -3,3 +3,4 @@
 out
 .gitattributes
 *.iml
+*.log
