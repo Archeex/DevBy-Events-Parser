@@ -4,14 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -32,7 +32,7 @@ public class Controller {
     @FXML
     private Label eventDate;
     @FXML
-    private Label eventDescription;
+    private TextArea eventDescription;
 
     @FXML
     private Button nextButton;
@@ -46,6 +46,8 @@ public class Controller {
     private Button threeDnewsButton;
     @FXML
     private Label startText;
+    @FXML
+    private Label internetConnection;
 
     private Integer pageNumber = 0;
     private ArticleParse news;
@@ -53,15 +55,16 @@ public class Controller {
     private static double xOffset = 0;
     private static double yOffset = 0;
 
-    private String productName = "itNotes";
+    private final String productName = "itNotes";
     static String tempPath;
 
     @FXML
-    private void initialize() throws ParserConfigurationException, IOException {
+    private void initialize() {
         tempPath = "C:\\Users\\" + System.getProperty("user.name") + "\\AppData\\Local\\Temp\\" + productName;
         imageExit.setImage(new Image("iconExit.png"));
         imageRoll.setImage(new Image("iconRoll.png"));
 
+        eventDescription.setVisible(false);
         startText.setText("Выберите интересующий вас источник. Для работы приложения требуется интернет-соединение.");
         setHandlers();
         setMouseDraggedShow();
@@ -112,8 +115,14 @@ public class Controller {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            habrButton.setStyle("-fx-background-color: #2F2F2F");
+            threeDnewsButton.setStyle("-fx-background-color: #376DF5");
+            itprogerButton.setStyle("-fx-background-color: #376DF5");
             initializeEvents(news, pageNumber);
             startText.setVisible(false);
+            eventDescription.setVisible(true);
+            if(!ArticleParse.parseSuccessful)
+                internetConnection.setText("Интернет-соединение отсутствует");
         });
 
         itprogerButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -132,8 +141,14 @@ public class Controller {
             }
             if(pageNumber > 5)
                 pageNumber = 5;
+            itprogerButton.setStyle("-fx-background-color: #2F2F2F");
+            habrButton.setStyle("-fx-background-color: #376DF5");
+            threeDnewsButton.setStyle("-fx-background-color: #376DF5");
             initializeEvents(news, pageNumber);
             startText.setVisible(false);
+            eventDescription.setVisible(true);
+            if(!ArticleParse.parseSuccessful)
+                internetConnection.setText("Интернет-соединение отсутствует");
         });
 
         threeDnewsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -152,8 +167,14 @@ public class Controller {
             }
             if(pageNumber > 19)
                 pageNumber = 19;
+            threeDnewsButton.setStyle("-fx-background-color: #2F2F2F");
+            habrButton.setStyle("-fx-background-color: #376DF5");
+            itprogerButton.setStyle("-fx-background-color: #376DF5");
             initializeEvents(news, pageNumber);
             startText.setVisible(false);
+            eventDescription.setVisible(true);
+            if(!ArticleParse.parseSuccessful)
+                internetConnection.setText("Интернет-соединение отсутствует");
         });
 
         imageExit.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -170,7 +191,7 @@ public class Controller {
     private void setMouseDraggedShow() {
         eventName.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
             Main.getPrimaryStage().getScene().setCursor(Cursor.HAND);
-            eventName.setTextFill(Color.web("#994058"));
+            eventName.setTextFill(Color.web("#376DF5"));
             });
         eventName.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
             Main.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
